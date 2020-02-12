@@ -25,7 +25,7 @@ public class SearchServlet extends HttpServlet {
         ResultSet rset = null;
 
         try {
-            String searchTerm = request.getParameter("speciesName");
+            String searchTerm = request.getParameter("tier");
 
             // Load the driver
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
@@ -33,19 +33,12 @@ public class SearchServlet extends HttpServlet {
             // Find the absolute path of the database folder
             String absPath = getServletContext().getRealPath("/") + DATABASE_PATH;
 
-//            StringBuilder sql = new StringBuilder("SELECT pet.nm, pet.age, food.nm");
-//            sql.append(" FROM pet_food, pet, food");
-//            sql.append(" WHERE pet_food.pet_id = pet.pet_id");
-//            sql.append(" AND pet_food.food_id = food.food_id");
-//            sql.append(" AND pet.species_nm = ?");
-//            sql.append(" ORDER BY pet.nm"); // Don't end SQL with semicolon!
-
             // Build the query as a String
-            StringBuilder sql = new StringBuilder("select SNACK_NAME, tier, t.TYPE_NAME");
+            StringBuilder sql = new StringBuilder("select SNACK_NAME, tier, t.TYPE_NAME ");
             sql.append("from SNACKS ");
-            sql.append("join SNACK_DETAIL on (SNACKS.SNACK_ID = SNACK_DETAIL.SNACK_ID)");
-            sql.append("JOIN TYPE t on (SNACKS.TYPE_ID = t.TYPE_ID)");
-            sql.append("where tier = ?"); // Don't end SQL with semicolon!
+            sql.append("join SNACK_DETAIL on (SNACKS.SNACK_ID = SNACK_DETAIL.SNACK_ID) ");
+            sql.append("JOIN TYPE t on (SNACKS.TYPE_ID = t.TYPE_ID) ");
+            sql.append("where tier = ? "); // Don't end SQL with semicolon!
 
             // Create a connection
             conn = DriverManager.getConnection(DRIVER_NAME + absPath, SCHEMA, PASSWORD);

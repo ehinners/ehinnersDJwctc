@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
-    <meta>
     <title>Home Page</title>
     <link rel="stylesheet" href="../css/style.css" rel="stylesheet">
 </head>
