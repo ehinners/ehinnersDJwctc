@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/style.css" rel="stylesheet">
 </head>
 <body>
-<div id="wrapper">
+<jsp:include page="header.jsp"></jsp:include>
     <header>
         <h1>
             My Snacks
@@ -33,6 +33,6 @@
         <a href="">Browse Items</a>
     </p>
     <br>
-</div>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

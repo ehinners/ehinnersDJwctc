@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<div id="wrapper">
+<jsp:include page="header.jsp"></jsp:include>
     <header>
         <h1>
             My Snacks
@@ -36,7 +36,7 @@
     </ul>
 
 </form>
-</div>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 </html>

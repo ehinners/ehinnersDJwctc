@@ -12,10 +12,16 @@
     <link rel="stylesheet" href="../css/style.css" rel="stylesheet">
 </head>
 <body>
+<jsp:include page="header.jsp"></jsp:include>
+    <header>
 <h1>Snack Search</h1>
+    </header>
 <form method="get" action="../../search">
-    Search by Tier <input type="text" name="tier"><br/><br/>
+    Search by Tier
+    <br>
+    <input type="text" name="tier"><br/><br/>
     <input type="submit" value="Search">
 </form>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

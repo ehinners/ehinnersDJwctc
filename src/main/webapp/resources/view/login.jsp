@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/style.css" rel="stylesheet">
 </head>
 <body>
-<div id="wrapper">
+<jsp:include page="header.jsp"></jsp:include>
     <header>
         <h1>
             Login to the Snack Registry
@@ -35,6 +35,6 @@
             </p>
         </form>
 
-</div>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

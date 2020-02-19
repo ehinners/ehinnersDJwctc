@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<div id="wrapper">
+<jsp:include page="header.jsp"></jsp:include>
     <header>
         <h1>
             My Snacks
@@ -36,7 +36,7 @@
     <input type="submit" value = "Save">
     </p>
 </form>
-</div>
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 </html>
