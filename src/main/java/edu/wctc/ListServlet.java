@@ -15,7 +15,7 @@ import java.util.List;
 @WebServlet(name = "ListServlet", urlPatterns = "/list")
 public class ListServlet extends HttpServlet {
     private final String DRIVER_NAME = "jdbc:derby:";
-    private final String DATABASE_PATH = "../../../db";
+    private final String DATABASE_PATH = "../../db";
     private final String USERNAME = "eric";
     private final String PASSWORD = "eric";
 
