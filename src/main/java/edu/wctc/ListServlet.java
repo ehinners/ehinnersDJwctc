@@ -38,8 +38,14 @@ public class ListServlet extends HttpServlet {
             // Find the absolute path of the database folder
             String absPath = getServletContext().getRealPath("/") + DATABASE_PATH;
 
-            StringBuilder sql = new StringBuilder("SELECT SNACK_NAME, tier");
-            sql.append(" FROM SNACKS");
+            StringBuilder sql = new StringBuilder("SELECT DESCRIPTION, FLAVOR_NAME, SNACK_NAME, TYPE_NAME," +
+                    " SNACK_ID, TIER, TIMES_ORDERED, SERVINGS");
+            sql.append(" FROM SNACKS s");
+            sql.append("join SNACK_DETAIL sd on (s.SNACK_ID = sd.SNACK_ID) ");
+            sql.append("JOIN TYPE t on (s.TYPE_ID = t.TYPE_ID) ");
+            sql.append("JOIN TYPE st on st.TYPE_ID = s.TYPE_ID");
+            sql.append("JOIN FLAVOR_PROFILE fp on fp.SNACK_ID = s.SNACK_ID");
+            sql.append("JOIN FLAVOR f on f.FLAVOR_ID = fp.FLAVOR_ID");
             sql.append(" ORDER BY tier"); // Don't end SQL with semicolon!
 
             // Create a connection
