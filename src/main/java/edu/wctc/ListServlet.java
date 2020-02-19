@@ -38,14 +38,8 @@ public class ListServlet extends HttpServlet {
             // Find the absolute path of the database folder
             String absPath = getServletContext().getRealPath("/") + DATABASE_PATH;
 
-            StringBuilder sql = new StringBuilder("SELECT DESCRIPTION, FLAVOR_NAME, SNACK_NAME, TYPE_NAME," +
-                    " SNACK_ID, TIER, TIMES_ORDERED, SERVINGS");
-            sql.append(" FROM SNACKS s");
-            sql.append("join SNACK_DETAIL sd on (s.SNACK_ID = sd.SNACK_ID) ");
-            sql.append("JOIN TYPE t on (s.TYPE_ID = t.TYPE_ID) ");
-            sql.append("JOIN TYPE st on st.TYPE_ID = s.TYPE_ID");
-            sql.append("JOIN FLAVOR_PROFILE fp on fp.SNACK_ID = s.SNACK_ID");
-            sql.append("JOIN FLAVOR f on f.FLAVOR_ID = fp.FLAVOR_ID");
+            StringBuilder sql = new StringBuilder("SELECT SNACK_NAME, tier");
+            sql.append(" FROM SNACKS");
             sql.append(" ORDER BY tier"); // Don't end SQL with semicolon!
 
             // Create a connection
@@ -55,30 +49,26 @@ public class ListServlet extends HttpServlet {
             // Execute a SELECT query and get a result set
             rset = stmt.executeQuery(sql.toString());
 
-            ///////////////////////// ADDING SUPPORT FOR SNACK CLASS /////////////////////////
+            // Create a StringBuilder for ease of appending strings
+            StringBuilder output = new StringBuilder();
 
-            // Create an array of Snacks
-            List<Snack> snackList = new ArrayList<Snack>();
+            // HTML to create a simple web page
+            output.append("<html><head><link href='../css/style.css' rel='stylesheet'></head><body><ul>");
 
             // Loop while the result set has more rows
             while (rset.next()) {
-                Snack snack = new Snack();
-                // Strings
-                snack.setDescription(rset.getString("DESCRIPTION"));
-                snack.setFlavorProfile(rset.getString("FLAVOR_NAME"));
-                snack.setSnackName(rset.getString("SNACK_NAME"));
-                snack.setSnackType(rset.getString("TYPE_NAME"));
-                // int
-                snack.setSnackID(rset.getInt("SNACK_ID"));
-                snack.setTier(rset.getInt("TIER"));
-                snack.setTimesOrdered(rset.getInt("TIMES_ORDERED"));
-                snack.setServings(rset.getInt("SERVINGS"));
+                // Get the first string (the pet name) from each record
+                String snackName = rset.getString(1);
+                int tier = rset.getInt(2);
+                // Append it as a list item
+                output.append("<li>").append(snackName + ": " + tier).append("</li>");
             }
+            // Close all those opening tags
+            output.append("</ul></body></html>");
 
-
-            // Forward the list as the response
-            request.setAttribute("snacks",snackList);
-            request.getRequestDispatcher("list2.jsp").forward(request, response);
+            // Send the HTML as the response
+            response.setContentType("text/html");
+            response.getWriter().print(output.toString());
 
         } catch (SQLException | ClassNotFoundException e) {
             // If there's an exception locating the driver, send IT as the response
