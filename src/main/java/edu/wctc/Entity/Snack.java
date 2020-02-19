@@ -1,15 +1,15 @@
-package edu.wctc;
+package edu.wctc.Entity;
 
 public class Snack
 {
     private String flavorProfile;
-    private int snackID;
     private String description;
-    private int timesOrdered;
-    private double servings;
-    private int tier;
     private String snackName;
     private String snackType;
+    private int snackID;
+    private int timesOrdered;
+    private int tier;
+    private int servings;
 
     public Snack() {
     }
@@ -46,11 +46,11 @@ public class Snack
         this.timesOrdered = timesOrdered;
     }
 
-    public double getServings() {
+    public int getServings() {
         return servings;
     }
 
-    public void setServings(double servings) {
+    public void setServings(int servings) {
         this.servings = servings;
     }
 
