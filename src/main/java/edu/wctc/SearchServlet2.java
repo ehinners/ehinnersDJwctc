@@ -77,7 +77,7 @@ public class SearchServlet2 extends HttpServlet {
 
             // Forward the list as the response
             request.setAttribute("snacks",snackList);
-            request.getRequestDispatcher("search2.jsp").forward(request, response);
+            request.getRequestDispatcher("resources/view/search2.jsp").forward(request, response);
 
         } catch (SQLException | ClassNotFoundException e) {
             // If there's an exception locating the driver, send IT as the response

@@ -74,7 +74,7 @@ public class ListServlet2 extends HttpServlet {
 
             // Forward the list as the response
             request.setAttribute("snacks",snackList);
-            request.getRequestDispatcher("list2.jsp").forward(request, response);
+            request.getRequestDispatcher("resources/view/list2.jsp").forward(request, response);
 
         } catch (SQLException | ClassNotFoundException e) {
             // If there's an exception locating the driver, send IT as the response
