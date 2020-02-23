@@ -1,5 +1,7 @@
 package edu.wctc;
 
+import edu.wctc.Entity.Snack;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -7,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "SearchServlet2", urlPatterns = "/search2")
 public class SearchServlet2 extends HttpServlet {
@@ -33,11 +37,12 @@ public class SearchServlet2 extends HttpServlet {
             // Find the absolute path of the database folder
             String absPath = getServletContext().getRealPath("/") + DATABASE_PATH;
 
-            // Build the query as a String
-            StringBuilder sql = new StringBuilder("select SNACK_NAME, tier, t.TYPE_NAME ");
-            sql.append("from SNACKS ");
-            sql.append("join SNACK_DETAIL on (SNACKS.SNACK_ID = SNACK_DETAIL.SNACK_ID) ");
-            sql.append("JOIN TYPE t on (SNACKS.TYPE_ID = t.TYPE_ID) ");
+            StringBuilder sql = new StringBuilder("SELECT DESCRIPTION, FLAVOR_NAME, s.SNACK_NAME, TYPE_NAME, s.SNACK_ID, TIER, TIMES_ORDERED, SERVINGS ");
+            sql.append("FROM SNACKS s ");
+            sql.append("join SNACK_DETAIL sd on (s.SNACK_ID = sd.SNACK_ID) ");
+            sql.append("JOIN TYPE t on (s.TYPE_ID = t.TYPE_ID) ");
+            sql.append("JOIN FLAVOR_PROFILE fp on fp.SNACK_ID = s.SNACK_ID ");
+            sql.append("JOIN FLAVOR f on f.FLAVOR_ID = fp.FLAVOR_ID ");
             sql.append("where tier = ? "); // Don't end SQL with semicolon!
 
             // Create a connection
@@ -49,73 +54,37 @@ public class SearchServlet2 extends HttpServlet {
             // Execute a SELECT query and get a result set
             rset = pstmt.executeQuery();
 
-            // Create a StringBuilder for ease of appending strings
-            StringBuilder output = new StringBuilder();
+            ///////////////////////// ADDING SUPPORT FOR SNACK CLASS /////////////////////////
 
-            // HTML to create a simple web page
-            output.append("<html><head><link href='../css/style.css' rel='stylesheet'></head>");
-            output.append("<body>");
-
-            // Start the table
-            output.append("<table>");
-            // Start a row
-            output.append("<tr>");
-            // Add the headers
-            output.append("<th>Name</th><th>Tier</th><th>Type</th>");
-            // End the row
-            output.append("</tr>");
+            // Create an array of Snacks
+            List<Snack> snackList = new ArrayList<Snack>();
 
             // Loop while the result set has more rows
             while (rset.next()) {
-                // Start a row
-                output.append("<tr>");
-                // Get the first string (the snack name) from each record
-                String snackName = rset.getString(1);
-                // Add a cell with the info
-                output.append("<td>" + snackName + "</td>");
-
-                // Get the rest of the pet data and append likewise
-                int tier = rset.getInt(2);
-                output.append("<td>" + tier + "</td>");
-                String snackType = rset.getString(3);
-                output.append("<td>" + snackType + "</td>");
-                // End the row
-                output.append("</tr>");
+                Snack snack = new Snack();
+                // Strings
+                snack.setDescription(rset.getString("DESCRIPTION"));
+                snack.setFlavorProfile(rset.getString("FLAVOR_NAME"));
+                snack.setSnackName(rset.getString("SNACK_NAME"));
+                snack.setSnackType(rset.getString("TYPE_NAME"));
+                // int
+                snack.setSnackID(rset.getInt("SNACK_ID"));
+                snack.setTier(rset.getInt("TIER"));
+                snack.setTimesOrdered(rset.getInt("TIMES_ORDERED"));
+                snack.setServings(rset.getInt("SERVINGS"));
             }
 
-            // Close all those opening tags
-            output.append("</table></body></html>");
 
-            // Send the HTML as the response
-            response.setContentType("text/html");
-            response.getWriter().print(output.toString());
+            // Forward the list as the response
+            request.setAttribute("snacks",snackList);
+            request.getRequestDispatcher("search2.jsp").forward(request, response);
 
         } catch (SQLException | ClassNotFoundException e) {
             // If there's an exception locating the driver, send IT as the response
             response.getWriter().print(e.getMessage());
             e.printStackTrace();
         } finally {
-            if (rset != null) {
-                try {
-                    rset.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (pstmt != null) {
-                try {
-                    pstmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            DatabaseUtils.closeAll(conn, pstmt, rset);
         }
     }
 }

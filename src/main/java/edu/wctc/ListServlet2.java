@@ -81,27 +81,7 @@ public class ListServlet2 extends HttpServlet {
             response.getWriter().print(e.getMessage());
             e.printStackTrace();
         } finally {
-            if (rset != null) {
-                try {
-                    rset.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            DatabaseUtils.closeAll(conn, stmt, rset);
         }
     }
 }

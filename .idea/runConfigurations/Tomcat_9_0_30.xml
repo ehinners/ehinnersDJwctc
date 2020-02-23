@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Tomcat 9.0.30" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.30" ALTERNATIVE_JRE_ENABLED="false">
-    <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/ehinnersDJwctc/resources/view/search.jsp" />
+    <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/ehinnersDJwctc/resources/view/facilitator.jsp" />
     <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
     <deployment>
       <artifact name="ehinnersDJwctc:war exploded">
