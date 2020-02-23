@@ -69,6 +69,16 @@ public class ListServlet2 extends HttpServlet {
                 snack.setTier(rset.getInt("TIER"));
                 snack.setTimesOrdered(rset.getInt("TIMES_ORDERED"));
                 snack.setServings(rset.getInt("SERVINGS"));
+
+                // Debug
+                System.out.println("/////////////////////////////////////////////////////");
+                System.out.println("id: "+snack.getSnackID() + " " + snack.getSnackName());
+                System.out.println(snack.getDescription());
+                System.out.println("Flavor Profile: "+snack.getFlavorProfile());
+                System.out.println(snack.getSnackType());
+                System.out.println("Tier: "+snack.getTier());
+                System.out.print("Times Ordered: "+snack.getTimesOrdered()+", Servings: ");
+                System.out.println(snack.getServings());
             }
 
 
