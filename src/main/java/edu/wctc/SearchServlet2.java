@@ -62,6 +62,7 @@ public class SearchServlet2 extends HttpServlet {
             // Loop while the result set has more rows
             while (rset.next()) {
                 Snack snack = new Snack();
+                snackList.add(snack);   // thanks stacy
                 // Strings
                 snack.setDescription(rset.getString("DESCRIPTION"));
                 snack.setFlavorProfile(rset.getString("FLAVOR_NAME"));
