@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>Snacks</title>
-    <link href="../css/style.css" rel="stylesheet">
+    <link href="../../resources/css/style.css" rel="stylesheet">
     <base href="${pageContext.request.contextPath}/"/>
 </head>
 <body>

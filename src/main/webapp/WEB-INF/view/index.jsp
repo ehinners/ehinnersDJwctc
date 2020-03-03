@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
     <title>Home Page</title>
-    <link rel="stylesheet" href="../css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../resources/css/style.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -26,7 +26,7 @@
     </nav>
     <span>
         <a class="imgLink" href="">
-            <img class="pictureCenter" src="../img/Transparent%20Shopping%20Cart.png" width="50%">
+            <img class="pictureCenter" src="../../resources/img/Transparent%20Shopping%20Cart.png" width="50%">
         </a>
     </span>
     <p class="chunkyLink">

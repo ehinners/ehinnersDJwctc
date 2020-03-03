@@ -9,14 +9,14 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="../css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../resources/css/style.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
-    <header>
-<h1>Snack Search</h1>
-    </header>
-<form method="get" action="../../search">
+<header>
+    <h1>Snack Search</h1>
+</header>
+<form method="get" action="../../search2">
     Search by Tier
     <br>
     <input type="text" name="tier"><br/><br/>
