@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="../../resources/css/style.css" rel="stylesheet">
+    <link href="../resources/css/style.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>

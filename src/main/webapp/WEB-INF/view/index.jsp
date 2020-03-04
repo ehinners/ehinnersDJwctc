@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
     <title>Home Page</title>
-    <link rel="stylesheet" href="../../resources/css/style.css" rel="stylesheet">
+    <link href="../resources/css/style.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
@@ -20,17 +20,17 @@
     </header>
     <nav class="pureCenter">
         <ul>
-            <li><a href="">Snacks</a></li>
-            <li><a href="">Login</a></li>
+            <li><a href="/snacks/home">Snacks</a></li>
+            <li><a href="snacks/login">Login</a></li>
         </ul>
     </nav>
     <span>
-        <a class="imgLink" href="">
-            <img class="pictureCenter" src="../../resources/img/Transparent%20Shopping%20Cart.png" width="50%">
+        <a class="imgLink" href="/snacks/search">
+            <img class="pictureCenter" src="../resources/img/Transparent%20Shopping%20Cart.png" width="50%">
         </a>
     </span>
     <p class="chunkyLink">
-        <a href="">Browse Items</a>
+        <a href="/snacks/list">Browse Items</a>
     </p>
     <br>
 <jsp:include page="footer.jsp"></jsp:include>
