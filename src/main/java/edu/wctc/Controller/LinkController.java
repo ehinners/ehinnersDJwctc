@@ -23,8 +23,9 @@ public class LinkController {
         @RequestMapping("/search")
         public String showFacilitator()
         {
-            return "facilitator";
+            return "search2";
         }
+
         @RequestMapping("/list")
         public String showList()
         {

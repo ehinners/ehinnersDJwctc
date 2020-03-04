@@ -33,6 +33,6 @@
     </c:forEach>
 </table>
 <!-- see base tag in head -->
-<a href="${appRoot}/index.jsp">Home</a>
+<a href="/snacks/home">Home</a>
 </body>
 </html>
